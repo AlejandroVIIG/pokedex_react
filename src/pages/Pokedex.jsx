@@ -40,9 +40,11 @@ const Pokedex = () => {
     }, []);
     
     useEffect(() => {
-        axios.get("http://pokeapi.co/api/v2/type")
+        axios.get("https://pokeapi.co/api/v2/type")
              .then(({data}) => setTypes(data.results))
              .catch(err => console.error(err));
+        
+        console.log("types: ", types);
     },[]);
 
     return (
@@ -63,7 +65,7 @@ const Pokedex = () => {
                 <select onChange={handleChange} className="border border-slate-200 bg-white p-2 shadow-md shadow-slate-500/50">
                     <option value="https://pokeapi.co/api/v2/pokemon?limit=1292" className="p-2">All Pokemons</option>
                     {
-                        types.map(type => <option className="capitilize" value={type.url} key={type.name}>{type.name}</option>)
+                        types.map(type => (<option className="capitilize" value={type.url} key={type.name}>{type.name}</option>))
                     }
                 </select>
             </form>
