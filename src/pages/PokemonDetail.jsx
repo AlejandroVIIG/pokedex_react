@@ -11,14 +11,18 @@ const PokemonDetail = () => {
 
     const getStatPercentage = stat => {
         const statPercent = (stat / 255) * 100;
-        return `${statPercent}%`
+        console.log(statPercent);
+        return statPercent + "%";
     }
 
     useEffect(() => {
-        axios.get(`http://pokeapi.co/api/v2/pokemon/${id}`)
+        console.log("pokemon id: ", id);
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
              .then(({data}) => setPokemon(data))
-             .catch(err => console.error(err));
-    })
+             .catch(err => console.error("Error", err));
+        
+        console.log(pokemon);
+    }, [])
 
     return (
     <section>
@@ -73,7 +77,11 @@ const PokemonDetail = () => {
                                 {/* contenedor barra de progreso */}
                                 <div className="h-6 bg-slate-200 rounded-sm overflow-hidden">
                                     {/* barra de progreso */}
-                                    <div className="h-full w-[50%] bg-gradient-to-r from-orange-400 to-yellow-400" style={{width: getStatPercentage(stat.base_stat)}}>
+                                    <div
+                                        className="h-full w-[50%] bg-gradient-to-r from-orange-400 to-yellow-400"
+                                        style={{
+                                            width: getStatPercentage(stat.base_stat)
+                                        }}>
                                     </div>
                                 </div>
                             </li>))

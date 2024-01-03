@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { paginatePokemons } from "../utils/pagination";
 import Pagination from "./Pagination";
 import PokemonPreview from "./PokemonPreview"
-import { current } from "@reduxjs/toolkit";
+
 
 const PokemonList = ({pokemons}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
 
     const {pokemonInPage, lastPage, pagesInCurrentBlock} = paginatePokemons(pokemons, currentPage);
-    console.log("PokemonList", pagesInCurrentBlock);
 
     useEffect(() => {
         setCurrentPage(1);
